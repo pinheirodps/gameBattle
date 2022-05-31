@@ -11,4 +11,5 @@ import lombok.NoArgsConstructor;
 @Builder
 public class PlayerDto {
     private String userId;
+    private String username;
 }

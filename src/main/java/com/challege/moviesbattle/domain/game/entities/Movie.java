@@ -1,27 +1,21 @@
 package com.challege.moviesbattle.domain.game.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import lombok.Builder;
+import com.challege.moviesbattle.domain.BaseEntity;
 import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+
+import javax.persistence.*;
 
 @Entity
 @Data
 @RequiredArgsConstructor
-public class Movie {
+public class Movie extends BaseEntity {
 
-    public Movie(final String title, final String imdbRating, final Game game) {
+    public Movie(final String title, final Double ratingValue, final Double ratingCount) {
         this.title = title;
-        this.imdbRating = imdbRating;
-        this.game = game;
+        this.ratingValue = ratingValue;
+        this.ratingCount = ratingCount;
     }
 
     @Id
@@ -29,13 +23,13 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    private String imdbRating;
-
-    @Getter
-    @Setter
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "game_id")
-    private Game game;
-
-
+    @Column(name = "imdb_rating")
+    private Double ratingValue;
+    @Column(name = "imdb_votes")
+    private Double ratingCount;
+    private Double best;
+    @PrePersist
+    protected void onCreate() {
+        this.best = ratingCount * ratingValue;
+    }
 }

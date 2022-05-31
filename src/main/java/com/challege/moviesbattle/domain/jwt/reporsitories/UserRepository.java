@@ -1,9 +1,11 @@
 package com.challege.moviesbattle.domain.jwt.reporsitories;
 
 import com.challege.moviesbattle.domain.jwt.entities.UserDao;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends CrudRepository<UserDao, Integer> {
+import java.util.Optional;
 
-    UserDao findByUsername(String username);
+public interface UserRepository extends JpaRepository<UserDao, Integer> {
+
+    Optional<UserDao> findByUsername(String username);
 }

@@ -1,16 +1,17 @@
 package com.challege.moviesbattle.infrasctructure.omdb.mapper;
 
 import com.challege.moviesbattle.domain.game.dto.MovieDto;
-import com.challege.moviesbattle.infrasctructure.omdb.ResultSearch;
 import com.challege.moviesbattle.infrasctructure.omdb.dtos.MovieInfraDto;
-import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+import java.util.List;
+
+@Mapper(componentModel = "spring")
 public interface OmdbClientMapper {
 
     OmdbClientMapper INSTANCE = Mappers.getMapper(OmdbClientMapper.class);
 
-    MovieDto moviesInfraToMoviesDto(ResultSearch result);
+    MovieDto moviesInfraToMoviesDto(MovieInfraDto source);
+    List<MovieDto> toMovieDtoList(List<MovieInfraDto> source);
 }

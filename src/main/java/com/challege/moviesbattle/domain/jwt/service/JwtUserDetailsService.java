@@ -4,8 +4,6 @@ package com.challege.moviesbattle.domain.jwt.service;
 import com.challege.moviesbattle.domain.jwt.dto.UserDto;
 import com.challege.moviesbattle.domain.jwt.entities.UserDao;
 import com.challege.moviesbattle.domain.jwt.reporsitories.UserRepository;
-import java.util.ArrayList;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,6 +11,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
@@ -26,10 +26,9 @@ public class JwtUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		UserDao user = userRepository.findByUsername(username);
-		if (user == null) {
-			throw new UsernameNotFoundException("User not found with username: " + username);
-		}
+		UserDao user = userRepository.findByUsername(username)
+				.orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
+
 		return new User(user.getUsername(), user.getPassword(),
 			new ArrayList<>());
 	}

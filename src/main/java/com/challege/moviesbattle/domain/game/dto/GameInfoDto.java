@@ -1,10 +1,11 @@
 package com.challege.moviesbattle.domain.game.dto;
 
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -12,6 +13,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class GameInfoDto {
 
-    private List<String> movies;
+    private Set<String> movies;
     private String gameId;
 }

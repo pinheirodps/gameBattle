@@ -1,13 +1,8 @@
 package com.challege.moviesbattle.infrasctructure.omdb.dtos;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
+import java.io.Serializable;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,8 +10,9 @@ import lombok.ToString;
 @Setter
 @ToString
 @EqualsAndHashCode
-public class MovieInfraDto {
+public class MovieInfraDto implements Serializable {
 
     private String title;
-    private String imdbRating;
+    private Double ratingValue;
+    private Double ratingCount;
 }

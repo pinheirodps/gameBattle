@@ -2,30 +2,21 @@ package com.challege.moviesbattle.domain.player.entities;
 
 import com.challege.moviesbattle.domain.BaseEntity;
 import com.challege.moviesbattle.domain.game.entities.Game;
-import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
 
 @Entity
 @RequiredArgsConstructor
-public class
-Player extends BaseEntity {
+public class Player extends BaseEntity {
 
-    public Player(final String username) {
-        this.username = username;
-    }
-
-    public Player(final String userId, final String username) {
+    public Player(final Long userId, final String username) {
         this.userId = userId;
         this.username = username;
     }
@@ -34,8 +25,7 @@ Player extends BaseEntity {
     @Getter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private String userId;
-
+    private Long userId;
     @Column(name = "username", nullable = false)
     @Getter
     @Setter
@@ -43,10 +33,12 @@ Player extends BaseEntity {
 
     @Getter
     @Setter
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "game_id")
-    private Game game;
+    private int score;
 
+    @Getter
+    @Setter
+    @OneToMany(mappedBy = "player", fetch = FetchType.LAZY)
+    private Set<Game> games =  new HashSet<>();
     @Override
     public int hashCode() {
         return Objects.hash(userId);

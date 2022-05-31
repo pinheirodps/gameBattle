@@ -8,6 +8,8 @@ import lombok.Data;
 public class MovieDto {
 
     private String title;
-    private String imdbRating;
+    private Double ratingValue;
+    private Double ratingCount;
+
 
 }

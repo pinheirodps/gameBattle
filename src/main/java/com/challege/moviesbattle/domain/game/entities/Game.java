@@ -3,50 +3,39 @@ package com.challege.moviesbattle.domain.game.entities;
 import com.challege.moviesbattle.domain.BaseEntity;
 import com.challege.moviesbattle.domain.game.enums.GameStatus;
 import com.challege.moviesbattle.domain.player.entities.Player;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrePersist;
-import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-@Data
 public class Game extends BaseEntity {
-
-
     @Column(name = "game_id", nullable = false)
     @Getter
+    @Setter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private String id;
-
+    private Long id;
+    @Getter
+    @Setter
     private Integer currentRound;
 
-    @OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
-    private Set<PlayerGameData> playerGameData = new HashSet<>();
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", unique = true)
+    @Getter
+    @Setter
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable=false)
     private Player player;
 
 
     @Enumerated(EnumType.STRING)
+    @Getter
+    @Setter
     private GameStatus gameStatus;
 
-    @OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
-    private Set<Movie> movies = new HashSet<>();
+    @Getter
+    @Setter
+    private boolean filled;
 
     @PrePersist
     protected void onCreate() {

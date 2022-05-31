@@ -1,13 +1,14 @@
 package com.challege.moviesbattle.domain.player.exceptions;
 
 import com.challege.moviesbattle.domain.commos.exceptions.AbstractCustomThrowableProblem;
+import org.zalando.problem.Status;
+
 import java.net.URI;
 import java.util.Map;
-import org.zalando.problem.Status;
 
 public class PlayerNotFoundException extends AbstractCustomThrowableProblem {
 
-    private static final URI TYPE = URI.create("urn:movies-battle-serviceproblem-type:player_not_found");
+    private static final URI TYPE = URI.create("urn:movies-battle-service-problem-type:player_not_found");
 
     /**
      * Throws a {@link PlayerNotFoundException}.

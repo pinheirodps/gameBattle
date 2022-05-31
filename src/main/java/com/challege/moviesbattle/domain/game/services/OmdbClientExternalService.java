@@ -1,13 +1,28 @@
 package com.challege.moviesbattle.domain.game.services;
 
 import com.challege.moviesbattle.domain.game.dto.MovieDto;
-import java.util.List;
-import java.util.Set;
 
+import java.util.List;
+
+/**
+ * The interface Omdb client external service.
+ */
 public interface OmdbClientExternalService {
 
-    MovieDto findMovieByTitle(final String title);
+    /**
+     * Find movie by id movie dto.
+     *
+     * @param id the id
+     * @return the movie dto
+     */
+    MovieDto findMovieById(final Integer id);
 
-    List<MovieDto> getRandomMovies();
+    /**
+     * Find movies paginate list.
+     *
+     * @param page the page
+     * @return the list
+     */
+    List<MovieDto> findMoviesPaginate(final Integer page);
 
 }

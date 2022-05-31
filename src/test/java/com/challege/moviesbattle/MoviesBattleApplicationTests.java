@@ -15,10 +15,10 @@ class MoviesBattleApplicationTests {
     void contextLoads() {
         // Create a List with all your items
 
-//        List<MovieDto> movies = Arrays.asList(MovieDto.builder().title("Batman").imdbRating("9").build(),
-//            MovieDto.builder().title("SuperMan").imdbRating("10").build(),
+//        List<MovieDto> movies = Arrays.asList(MovieDto.builder().title("Batman").imdbRating(9.0).build(),
+//            MovieDto.builder().title("SuperMan").imdbRating(10.0).build(),
 //            MovieDto.builder().title("Inception").imdbRating("8").build(),
-//            MovieDto.builder().title("Goodfellas").imdbRating("10").build()
+//            MovieDto.builder().title("Goodfellas").imdbRating(10.0).build()
 //
 //        );
 
